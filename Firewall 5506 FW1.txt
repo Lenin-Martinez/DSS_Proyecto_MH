@@ -46,12 +46,6 @@ service-policy global_policy global
 
 ##============ Direccionamiento NAT =================
 
-configure terminal
-object network FTP2_SERVER
-host 192.168.2.20
-nat (DMZ,EXTERNA) static 192.168.1.2
-exit
-
 # ============ ACL 
 
 configure terminal
@@ -87,12 +81,11 @@ authentication pre-share
 group 2
 lifetime 86400
 exit 
- 
 tunnel-group 192.168.10.2 type ipsec-l2l
+
 tunnel-group 192.168.10.2 ipsec-attributes
 ikev1 pre-shared-key DSS104
-exit 
- 
+exit  
 crypto ipsec ikev1 transform-set TRANSFORM_VPN esp-3des  esp-sha-hmac
 crypto map MAP_VPN 10 set peer 192.168.10.2
 crypto map MAP_VPN 10 set ikev1 transform-set TRANSFORM_VPN
