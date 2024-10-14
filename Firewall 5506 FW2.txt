@@ -47,8 +47,6 @@ configure terminal
 access-list ACL_EXTERNA extended permit ip 192.168.3.0 255.255.255.0 192.168.20.0 255.255.255.0
 access-group ACL_EXTERNA in interface EXTERNA
 
-write memory
-
 #============ Guardar configuracion ==================
 write memory
 
@@ -86,17 +84,16 @@ show crypto isakmp sa
 
 
 
+# ============ INICIAR ===============
 
-
-
-
-
-
-
-
-
-
-
+configure terminal
+interface GigabitEthernet 1/1
+no shutdown
+interface GigabitEthernet 1/2
+no shutdown
+exit
+configure terminal
+crypto map MAP_VPN interface EXTERNA
 
 
 #============ Reiniciar de Interfaces ==================
