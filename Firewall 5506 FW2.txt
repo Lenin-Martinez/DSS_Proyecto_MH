@@ -40,12 +40,12 @@ service-policy global_policy global
 
 ##============ Direccionamiento NAT =================
 
-
 # ============ ACL 
 
 configure terminal
 access-list ACL_EXTERNA extended permit ip 192.168.3.0 255.255.255.0 192.168.20.0 255.255.255.0
 access-group ACL_EXTERNA in interface EXTERNA
+
 
 #============ Guardar configuracion ==================
 write memory

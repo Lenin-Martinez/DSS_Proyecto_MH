@@ -46,11 +46,18 @@ service-policy global_policy global
 
 ##============ Direccionamiento NAT =================
 
+object network ZONA_DMZ
+host 192.168.2.20
+nat (DMZ,EXTERNA) static 192.168.1.3
+
 # ============ ACL 
 
 configure terminal
+
 access-list ACL_EXTERNA extended permit icmp 192.168.20.0 255.255.255.0 host 192.168.2.20
 access-list ACL_EXTERNA extended permit tcp 192.168.20.0 255.255.255.0 host 192.168.2.20 range 20 21
+access-list ACL_EXTERNA extended permit tcp 192.168.20.0 255.255.255.0 host 192.168.3.40 eq 25
+access-list ACL_EXTERNA extended permit tcp 192.168.20.0 255.255.255.0 host 192.168.3.40 eq 110
 access-list ACL_EXTERNA extended permit ip 192.168.20.0 255.255.255.0 192.168.3.0 255.255.255.0
 access-group ACL_EXTERNA in interface EXTERNA
 
